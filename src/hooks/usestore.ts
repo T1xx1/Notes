@@ -12,7 +12,7 @@ export default function useStore() {
       payload
    }: {
       type: string,
-      payload: Object;
+      payload: any;
    }) => {
       switch (type) { }
 
@@ -24,7 +24,7 @@ export default function useStore() {
    let [val, dispatch] = useReducer(reducer, localstorage.val);
 
    // sync val with val in localstorage
-   useEffect(() => localstorage.write(val), val);
+   useEffect(() => localstorage.write(val), [val]);
 
    return [val, dispatch];
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Note as Type } from '../../hooks/usestore';
 
@@ -10,6 +10,8 @@ export default function Note({
    dispatch: Function;
 }) {
    let [data, setData] = useState(n);
+   let [isDragging, setIsDragging] = useState(false);
+
    // sync with val
    useEffect(() => {
       dispatch({
@@ -28,6 +30,23 @@ export default function Note({
          text: textarea.value
       });
    };
+
+   let drag = {
+      _: (e: any) => {
+         if (isDragging) {
+            setData({
+               ...data,
+               _pos: {
+                  x: data._pos.x + e.movementX,
+                  y: data._pos.y + e.movementY
+               }
+            });
+         }
+      },
+      end: () => setIsDragging(false),
+      start: () => setIsDragging(true)
+   };
+
    return <div
       className='absolute grid grid-rows-5 h-60 w-60'
       style={{
@@ -36,6 +55,10 @@ export default function Note({
    >
       <div
          className='cursor-move rounded-t-lg row-span-1'
+         onMouseDown={drag.start}
+         onMouseLeave={drag.end}
+         onMouseMove={drag._}
+         onMouseUp={drag.end}
          style={{
             backgroundColor: data.color
          }}

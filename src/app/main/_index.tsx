@@ -9,6 +9,22 @@ export default function Main({
    val: any,
    dispatch: Function;
 }) {
-   return <main>
+   let add = (e: any) => {
+      let mouse = e.nativeEvent;
+
+      if (e.target.localName === 'main') {
+         dispatch({
+            type: 'add',
+            payload: {
+               x: mouse.x,
+               y: mouse.y
+            }
+         });
+      }
+   };
+
+   return <main
+      className='h-full'
+      onMouseDown={add}>
    </main>;
 }

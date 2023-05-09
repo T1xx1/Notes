@@ -28,7 +28,16 @@ export default function useStore() {
       type: string,
       payload?: any;
    }) => {
-      switch (type) { }
+      switch (type) {
+         case 'add': {
+            let note = new Note();
+            
+            note._pos = payload;
+
+            state[note._id] = note;
+
+            break;
+         };
 
       return {
          ...state

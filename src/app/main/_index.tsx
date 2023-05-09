@@ -1,6 +1,6 @@
 import { Note as NoteClass } from '../../hooks/usestore';
 
-import Note from './note';
+import Note from './note/_index';
 
 export default function Main({
    val,

@@ -26,5 +26,12 @@ export default function Main({
    return <main
       className='h-full'
       onMouseDown={add}>
+      {val.map((note: NoteClass) => {
+         return <Note
+            key={note._id}
+            n={note}
+            dispatch={dispatch}
+         />;
+      })}
    </main>;
 }

@@ -12,7 +12,7 @@ export default function useStore() {
       payload
    }: {
       type: string,
-      payload: any;
+      payload?: any;
    }) => {
       switch (type) { }
 

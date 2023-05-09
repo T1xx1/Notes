@@ -38,6 +38,12 @@ export default function useStore() {
 
             break;
          };
+         case 'update': {          
+            state[payload._id] = payload;
+            
+            break;
+         }
+      }
 
       return {
          ...state

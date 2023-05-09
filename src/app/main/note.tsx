@@ -10,6 +10,24 @@ export default function Note({
    dispatch: Function;
 }) {
    let [data, setData] = useState(n);
+   // sync with val
+   useEffect(() => {
+      dispatch({
+         type: 'update',
+         payload: {
+            ...data
+         }
+      });
+   }, [data]);
+
+   let text = (e: any) => {
+      let textarea = e.target as HTMLTextAreaElement;
+
+      setData({
+         ...data,
+         text: textarea.value
+      });
+   };
    return <div
       className='absolute grid grid-rows-5 h-60 w-60'
       style={{
@@ -26,6 +44,7 @@ export default function Note({
       <textarea
          value={data.text}
          className='outline-none px-2 py-1 row-span-4 resize-none rounded-b-lg select-none'
+         onChange={text}
          placeholder='Add your note...'
          style={{
             backgroundColor: `${data.color}4d`

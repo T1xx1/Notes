@@ -48,9 +48,10 @@ export default function Note({
    };
 
    return <div
-      className='absolute grid grid-rows-5 h-60 w-60'
+      className='absolute grid grid-rows-5 h-60 rounded shadow w-60'
       style={{
-         transform: `translate(${data._pos.x}px, ${data._pos.y}px)`
+         transform: `translate(${data._pos.x}px, ${data._pos.y}px)`,
+         zIndex: isDragging ? 1 : 0
       }}
    >
       <div
@@ -62,8 +63,7 @@ export default function Note({
          style={{
             backgroundColor: data.color
          }}
-      >
-      </div>
+      ></div>
       <textarea
          value={data.text}
          className='outline-none px-2 py-1 row-span-4 resize-none rounded-b-lg select-none'

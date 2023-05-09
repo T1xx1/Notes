@@ -1,4 +1,4 @@
-import useStore, { Note } from '../hooks/usestore';
+import useStore from '../hooks/usestore';
 
 import Footer from './footer/_index';
 

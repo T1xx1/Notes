@@ -28,6 +28,7 @@ export default class LocalStorage {
    }
    init() {
       this.write(this._initial);
+      this.read();
    }
    read() {
       this.val = _.get(this._id);

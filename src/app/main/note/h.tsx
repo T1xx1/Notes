@@ -1,15 +1,19 @@
 import { Note } from '../../../hooks/usestore';
 
+import Add from './add';
+
 export default function H({
    data,
    setData,
    isDragging,
-   setIsDragging
+   setIsDragging,
+   dispatch
 }: {
    data: Note;
    setData: Function;
    isDragging: boolean;
    setIsDragging: Function;
+   dispatch: Function;
 }) {
    let drag = {
       _: (e: any) => {
@@ -36,5 +40,7 @@ export default function H({
       style={{
          backgroundColor: data.color
       }}
-   ></div>;
+   >
+      <Add dispatch={dispatch} />
+   </div>;
 }

@@ -36,6 +36,7 @@ export default function Note({
          setData={setData}
          isDragging={isDragging}
          setIsDragging={setIsDragging}
+         dispatch={dispatch}
       />
       <Text
          data={data}

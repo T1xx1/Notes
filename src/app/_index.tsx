@@ -7,7 +7,12 @@ export default function App() {
    let [val, dispatch] = useStore();
 
    return <>
-      {val !== null && <Main val={Object.values(val)} dispatch={dispatch} />}
+      {val !== null && (
+         <Main
+            val={Object.values(val)}
+            dispatch={dispatch}
+         />
+      )}
       <Footer />
    </>;
 }

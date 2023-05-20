@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 
-import meta from '../assets/data/meta.json';
+import meta from '../meta.json';
 
 import LocalStorage from '../lib/localstorage';
 

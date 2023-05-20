@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 
 import storage from '../data/storage';
 
@@ -8,11 +9,15 @@ import NoNotes from './nonotes';
 export default function App() {
    let [val, dispatch] = storage();
 
+   let [notes, setNotes] = useState(Object.values(val));
+
+   useEffect(() => setNotes(Object.values(val)), [val]);
+
    return <>
       <NoNotes />
       {val !== null && (
          <Main
-            val={Object.values(val)}
+            val={notes}
             dispatch={dispatch}
          />
       )}

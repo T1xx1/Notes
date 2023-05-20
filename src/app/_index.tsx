@@ -1,11 +1,12 @@
-import useStore from '../hooks/usestore';
+
+import storage from '../data/storage';
 
 import Sign from './sign';
 import Main from './main/_index';
 import NoNotes from './nonotes';
 
 export default function App() {
-   let [val, dispatch] = useStore();
+   let [val, dispatch] = storage();
 
    return <>
       <NoNotes />

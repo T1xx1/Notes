@@ -2,45 +2,37 @@ import { useEffect, useReducer } from 'react';
 
 import meta from '../meta.json';
 
+import { Note } from './note';
 import LocalStorage from '../lib/localstorage';
 
-export class Note {
-   _id = parseInt(String(Math.random()).slice(2));
-   _pos = {
-      x: 0,
-      y: 0
-   };
-   color = '#ffff00';
-   text = '';
-
-   constructor() {
-      return this;
-   }
-}
-
-export default function useStore() {
-   let localstorage = new LocalStorage(meta.name, 0, {});
+export default function storage() {
+   let localstorage = new LocalStorage(meta.name);
 
    let reducer = (state: any, {
       type,
       payload
    }: {
-      type: string,
-      payload?: any;
+      type: 'add' | 'del' | 'update',
+      payload: any;
    }) => {
       switch (type) {
          case 'add': {
             let note = new Note();
-            
+
             note._pos = payload;
 
             state[note._id] = note;
 
             break;
          };
-         case 'update': {          
+         case 'del': {
+            delete state[payload._id];
+
+            break;
+         }
+         case 'update': {
             state[payload._id] = payload;
-            
+
             break;
          }
       }
@@ -52,7 +44,7 @@ export default function useStore() {
 
    let [val, dispatch] = useReducer(reducer, localstorage.val);
 
-   // sync val with val in localstorage
+   // sync val with localstorage val
    useEffect(() => localstorage.write(val), [val]);
 
    return [val, dispatch];
